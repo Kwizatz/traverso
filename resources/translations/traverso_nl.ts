@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl">
+<TS version="2.1" language="nl">
 <context>
     <name>AddRemoveClip</name>
     <message>
@@ -261,7 +261,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/traverso/ui/AppearenceConfigPage.ui" line="190"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Kleurenpallet aanpassen</translation>
     </message>
     <message>
         <location filename="../../src/traverso/ui/AppearenceConfigPage.ui" line="202"/>
@@ -301,7 +301,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/traverso/ui/AppearenceConfigPage.ui" line="250"/>
         <source>Orientate Track VU&apos;s horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>TrackVU&apos;s horizontaal weergeven</translation>
     </message>
     <message>
         <location filename="../../src/traverso/ui/AppearenceConfigPage.ui" line="260"/>
@@ -394,7 +394,7 @@ effect after restarting Traverso!</source>
     <message>
         <location filename="../../src/core/AudioClip.cpp" line="903"/>
         <source>AudioClip: Normalize</source>
-        <translation type="unfinished"></translation>
+        <translation>AudioClip: Normalizeren</translation>
     </message>
 </context>
 <context>
@@ -500,7 +500,7 @@ effect after restarting Traverso!</source>
     <message>
         <location filename="../../src/sheetcanvas/ui/AudioClipEditDialog.ui" line="46"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Bron</translation>
     </message>
 </context>
 <context>
@@ -795,32 +795,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/core/AudioTrack.cpp" line="133"/>
         <source>Track: AudioClip with id %1 not found in Resources database!</source>
-        <translation type="unfinished"></translation>
+        <translation>Track: AudioClip met id %1niet in Bronnen database gevonden!</translation>
     </message>
     <message>
         <location filename="../../src/core/AudioTrack.cpp" line="183"/>
         <source>Unable to Record to AudioTrack</source>
-        <translation type="unfinished"></translation>
+        <translation>Opnemen naar AudioTrack niet mogelijk</translation>
     </message>
     <message>
         <location filename="../../src/core/AudioTrack.cpp" line="184"/>
         <source>AudioDevice doesn&apos;t have this Capture Bus: %1 (Track %2)</source>
-        <translation type="unfinished">AudioApparaat heeft deze Opname Bus niet: %1 (Track %2)</translation>
+        <translation>AudioApparaat heeft deze Opname Bus niet: %1 (Track %2)</translation>
     </message>
     <message>
         <location filename="../../src/core/AudioTrack.cpp" line="353"/>
         <source>Silence Other Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation>Maak andere Tracks stil</translation>
     </message>
     <message>
         <location filename="../../src/core/AudioTrack.cpp" line="438"/>
         <source>Remove Clip</source>
-        <translation type="unfinished">Verwijder Clip</translation>
+        <translation>Verwijder Clip</translation>
     </message>
     <message>
         <location filename="../../src/core/AudioTrack.cpp" line="452"/>
         <source>Add Clip</source>
-        <translation type="unfinished">Clip toevoegen</translation>
+        <translation>Clip toevoegen</translation>
     </message>
 </context>
 <context>
@@ -1049,12 +1049,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/traverso/ui/CDWritingDialog.ui" line="265"/>
         <source>Total Length [mm:ss:frames]:</source>
-        <translation type="unfinished"></translation>
+        <translation>Totatle lengte [mm:ss:frames]:</translation>
     </message>
     <message>
         <location filename="../../src/traverso/ui/CDWritingDialog.ui" line="284"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Voortgang</translation>
     </message>
     <message>
         <location filename="../../src/traverso/ui/CDWritingDialog.ui" line="331"/>
@@ -1106,7 +1106,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/commands/Crop.cpp" line="54"/>
         <source>AudioClip: Magnetic Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>AudioClip: Magnetisch knippen</translation>
     </message>
 </context>
 <context>
@@ -4231,7 +4231,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../src/traverso/widgets/TContextHelpWidget.cpp" line="53"/>
         <location filename="../../src/traverso/widgets/TContextHelpWidget.cpp" line="88"/>
         <source>Active Context</source>
-        <translation type="unfinished"></translation>
+        <translation>Huidige Context</translation>
     </message>
 </context>
 <context>
