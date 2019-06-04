@@ -211,6 +211,11 @@ void DriverInfo::draw_information( )
         text += "   " + QString::number(audiodevice().get_sample_rate() / 1000.0, 'f', 1) + "KHz @ " + latency + xruns;
     }
     m_driver->setText(text);
+    if (audiodevice().get_driver_type() == "Null Driver") {
+        m_driver->setStyleSheet("QPushButton {color: red;}");
+    } else {
+        m_driver->setStyleSheet("");
+    }
     updateGeometry();
 }
 
