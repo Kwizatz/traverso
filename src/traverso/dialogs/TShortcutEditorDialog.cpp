@@ -57,8 +57,8 @@ TShortcutEditorDialog::TShortcutEditorDialog(QWidget *parent)
 		string = string.arg(i);
 		string = QString(string + "|" + string);
 		keys << string;
-	}
-	keys << "Left Arrow|LEFTARROW" << "Right Arrow|RIGHTARROW" << "Up Arrow|UPARROW" << "Down Arrow|DOWNARROW";
+    }
+    keys << "Left|LEFTARROW" << "Right|RIGHTARROW" << "Up|UPARROW" << "Down|DOWNARROW";
 	keys << "Enter|ENTER" << "Home|HOME" << "End|END" << "Delete|DELETE";
 	keys << "Page Up|PAGEUP" << "Page Down|PAGEDOWN";
 	keys << "Space Bar|SPACE";
@@ -312,7 +312,7 @@ void TShortcutEditorDialog::shortcut_tree_widget_item_activated()
 	if (keys.size() > 0)
 	{
 		QString keySequence = keys.at(0);
-		tShortCutManager().makeShortcutKeyHumanReadable(keySequence);
+        tShortCutManager().makeShortcutKeyHumanReadable(keySequence);
 		int index = ui->keyComboBox1->findText(keySequence, Qt::MatchFixedString);
 		ui->keyComboBox1->setCurrentIndex(index);
 	}
