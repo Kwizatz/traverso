@@ -138,7 +138,9 @@ QString timeref_to_hms(const TimeRef& ref)
 	mins = (int) (remainder / ( ONE_MINUTE_UNIVERSAL_SAMPLE_RATE ));
 	remainder -= mins * ONE_MINUTE_UNIVERSAL_SAMPLE_RATE;
 	secs = (int) (remainder / UNIVERSAL_SAMPLE_RATE);
-    return QString().asprintf("%02d:%02d:%02d", hours, mins, secs);
+    QString spos("%1:%2%3");
+    return spos.arg(hours, 2, 10, QLatin1Char('0')).arg(mins, 2, 10, QLatin1Char('0')).arg(secs, 2, 10, QLatin1Char('0'));
+
 }
 
 QString timeref_to_ms(const TimeRef& ref)
@@ -151,13 +153,13 @@ QString timeref_to_ms(const TimeRef& ref)
 	mins = (int) (universalframe / ( ONE_MINUTE_UNIVERSAL_SAMPLE_RATE ));
 	remainder = (long unsigned int) (universalframe - (mins * ONE_MINUTE_UNIVERSAL_SAMPLE_RATE));
 	secs = (int) (remainder / UNIVERSAL_SAMPLE_RATE);
-    return QString("%s:%s").arg(mins, secs);
+    QString spos("%1:%2");
+    return spos.arg(mins, 2, 10, QLatin1Char('0')).arg(secs, 2, 10, QLatin1Char('0'));
 }
 
 // TimeRef to MM:SS.99 (hundredths)
 QString timeref_to_ms_2 (const TimeRef& ref)
 {
-	QString spos;
 	qint64 remainder;
 	int mins, secs, frames;
 
@@ -168,15 +170,13 @@ QString timeref_to_ms_2 (const TimeRef& ref)
 	secs = remainder / UNIVERSAL_SAMPLE_RATE;
 	remainder -= secs * UNIVERSAL_SAMPLE_RATE;
 	frames = remainder * 100 / UNIVERSAL_SAMPLE_RATE;
-    spos.asprintf ( " %02d:%02d%c%02d", mins, secs, QLocale::system().decimalPoint().toLatin1().data(), frames );
-
-	return spos;
+    QString spos("%1:%2%3%4");
+    return spos.arg(mins, 2, 10, QLatin1Char('0')).arg(secs, 2, 10, QLatin1Char('0')).arg(QLocale::system().decimalPoint()).arg(frames, 2, 10, QLatin1Char('0'));
 }
 
 // TimeRef to MM:SS.999 (ms)
 QString timeref_to_ms_3(const TimeRef& ref)
 {
-	QString spos;
 	qint64 remainder;
 	int mins, secs, frames;
 
@@ -187,15 +187,13 @@ QString timeref_to_ms_3(const TimeRef& ref)
 	secs = remainder / UNIVERSAL_SAMPLE_RATE;
 	remainder -= secs * UNIVERSAL_SAMPLE_RATE;
 	frames = remainder * 1000 / UNIVERSAL_SAMPLE_RATE;
-    spos.asprintf ( " %02d:%02d%c%03d", mins, secs, QLocale::system().decimalPoint().toLatin1(), frames );
-
-	return spos;
+    QString spos("%1:%2%3%4");
+    return spos.arg(mins, 2, 10, QLatin1Char('0')).arg(secs, 2, 10, QLatin1Char('0')).arg(QLocale::system().decimalPoint()).arg(frames, 3, 10, QLatin1Char('0'));
 }
 
 // Frame to MM:SS:75 (75ths of a second, for CD burning)
 QString timeref_to_cd (const TimeRef& ref)
 {
-	QString spos;
 	qint64 remainder;
 	int mins, secs, frames;
 
@@ -206,15 +204,13 @@ QString timeref_to_cd (const TimeRef& ref)
 	secs = remainder / UNIVERSAL_SAMPLE_RATE;
 	remainder -= secs * UNIVERSAL_SAMPLE_RATE;
 	frames = remainder * 75 / UNIVERSAL_SAMPLE_RATE;
-    spos.asprintf ( " %02d:%02d:%02d", mins, secs, frames );
-
-	return spos;
+    QString spos("%1:%2%3");
+    return spos.arg(mins, 2, 10, QLatin1Char('0')).arg(secs, 2, 10, QLatin1Char('0')).arg(frames, 2, 10, QLatin1Char('0'));
 }
 
 // Frame to HH:MM:SS,75 (75ths of a second, for CD burning)
 QString timeref_to_cd_including_hours (const TimeRef& ref)
 {
-	QString spos;
 	qint64 remainder;
 	int hours, mins, secs, frames;
 
@@ -227,9 +223,9 @@ QString timeref_to_cd_including_hours (const TimeRef& ref)
 	secs = (int) (remainder / UNIVERSAL_SAMPLE_RATE);
 	remainder -= secs * UNIVERSAL_SAMPLE_RATE;
 	frames = remainder * 75 / UNIVERSAL_SAMPLE_RATE;
-    spos.asprintf("%02d:%02d:%02d,%02d", hours, mins, secs, frames );
 
-	return spos;
+    QString spos("%1:%2%3%4");
+    return spos.arg(hours, 2, 10, QLatin1Char('0')).arg(mins, 2, 10, QLatin1Char('0')).arg(secs, 2, 10, QLatin1Char('0')).arg(frames, 2, 10, QLatin1Char('0'));
 }
 
 QString timeref_to_text(const TimeRef & ref, qint64 scalefactor)

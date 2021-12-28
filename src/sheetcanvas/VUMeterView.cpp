@@ -225,7 +225,6 @@ void VUMeterRulerView::paint(QPainter *painter, const QStyleOptionGraphicsItem *
     PENTER4;
     painter->save();
 
-    QString spm;
     int deltaY;
 
     painter->setFont(m_font);
@@ -246,9 +245,11 @@ void VUMeterRulerView::paint(QPainter *painter, const QStyleOptionGraphicsItem *
         }
 
         deltaY = int( VUMeterView::VUMeterView_lut()->at(idx)/115.0  * levelRange );
-        spm.asprintf("%2i", m_presetMark[j]);
+        QString spm("%1");
+        spm = spm.arg(m_presetMark[j], 2, 10, QLatin1Char('0'));
 
-        painter->drawText(deltaY - m_fontLabelAscent + 2, m_fontLabelAscent + 3, spm);
+
+        painter->drawText(deltaY - m_fontLabelAscent + 2, m_fontLabelAscent + 3, "spm");
         painter->drawLine(deltaY, - 6, deltaY, TICK_LINE_LENGTH - 6);
     }
     painter->restore();

@@ -182,7 +182,8 @@ void SpectralMeterView::resize()
 void SpectralMeterView::update_background()
 {
         PENTER3;
-	// draw the background image
+    QString spm("%1");
+    // draw the background image
 	bgPixmap = QPixmap((int)m_boundingRect.width(), (int)m_boundingRect.height());
 
 	QPainter painter(&bgPixmap);
@@ -190,8 +191,6 @@ void SpectralMeterView::update_background()
 	painter.fillRect(m_rect, m_brushBg);
 	painter.setFont(themer()->get_font("FFTMeter:fontscale:label"));
 	QFontMetrics fm(themer()->get_font("FFTMeter:fontscale:label"));
-
-	QString spm;
 
 	// draw horizontal lines + labels
 	for (float i = upper_db; i >= lower_db; i -= 10.0f) {
@@ -201,8 +200,7 @@ void SpectralMeterView::update_background()
 		painter.drawLine(QPointF(m_rect.x(), f), QPointF(m_rect.right(), f));
 
 		painter.setPen(m_penFont);
-        spm.asprintf("%2.0f", i);
-		painter.drawText(m_rect.right() + 1, (int)f + fm.ascent()/2, spm);
+        painter.drawText(m_rect.right() + 1, (int)f + fm.ascent()/2, spm.arg(i, 2));
 	}
 
 	// draw frequency labels and tickmarks
@@ -221,14 +219,15 @@ void SpectralMeterView::update_background()
 			continue;
 		}
 
-        spm.asprintf("%2.0f", m_freq_labels.at(i));
+        QString spm("%1");
+        spm = spm.arg(m_freq_labels.at(i), 2);
         float s = (float)fm.horizontalAdvance(spm)/2.0f;
 
 
 		// draw text only if there is enough space for it
 		if (((f - s) > last_pos) && ((f + s) < float(m_boundingRect.width()-1))) {
 			painter.setPen(m_penFont);
-			painter.drawText(QPointF(f - s, m_boundingRect.height() - fm.descent() - 3), spm);
+            painter.drawText(QPointF(f - s, m_boundingRect.height() - fm.descent() - 3), spm);
 			last_pos = f + s + 1.0;
 			painter.setPen(m_penTickMain);
 		} else {
@@ -557,13 +556,12 @@ TCommand* SpectralMeterView::export_average_curve()
 	}
 
 	QTextStream out(&file);
-	QString separator = " ";
 	QString str;
 
 	if (format == formatA) {
 		// export the data in text format
 		for (int i = 0; i < s; ++i) {
-            out << str.asprintf("%.6f %.6f\n", m_map_idx2freq.at(i), m_avg_db.at(i));
+            out << str.arg("%1 %2\n").arg(m_map_idx2freq.at(i), 0, 'g', 6).arg(m_avg_db.at(i), 0, 'g', 6);
 		}
 
 		return 0;
@@ -976,7 +974,7 @@ QString SpectralMeterView::get_xmgr_string()
 	QString str;
 
 	for (int i = 0; i < n; ++i) {
-        s += str.asprintf("%.6f %.6f\n", m_map_idx2freq.at(i), m_avg_db.at(i));
+        s += str.arg("%1 %2\n").arg(m_map_idx2freq.at(i), 0, 'g', 6).arg(m_avg_db.at(i), 0, 'g', 6);
 	}
 
 	s += "&\n";
