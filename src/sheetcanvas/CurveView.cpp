@@ -193,7 +193,7 @@ void CurveView::paint( QPainter * painter, const QStyleOptionGraphicsItem * opti
     }
 
     // Which means we have to sort the polygon
-    qSort(polygon.begin(), polygon.end(), smallerpoint);
+    std::sort(polygon.begin(), polygon.end(), smallerpoint);
 
     painter->drawPolyline(polygon);
     painter->restore();
@@ -220,7 +220,7 @@ void CurveView::add_curvenode_view(CurveNode* node)
         cmd->set_instantanious(true);
         TCommand::process_command(cmd);
 
-        qSort(m_nodeViews.begin(), m_nodeViews.end(), Curve::smallerNode);
+        std::sort(m_nodeViews.begin(), m_nodeViews.end(), Curve::smallerNode);
 
         update();
     }
@@ -359,7 +359,7 @@ void CurveView::update_blink_color()
 
     QColor blinkColor = themer()->get_color("CurveNode:blink");
 
-    m_blinkingNode->set_color(blinkColor.light(m_blinkDarkness));
+    m_blinkingNode->set_color(blinkColor.lighter(m_blinkDarkness));
 
     m_blinkingNode->update();
 }

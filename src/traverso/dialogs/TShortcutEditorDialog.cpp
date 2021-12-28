@@ -158,7 +158,7 @@ void TShortcutEditorDialog::objects_combo_box_activated(int index)
 	{
 		QTreeWidgetItem* item;
 		item = new QTreeWidgetItem(QStringList() << function->getLongDescription() << function->getKeySequence());
-		QVariant v = qVariantFromValue((void*) function);
+        QVariant v = QVariant::fromValue((void*) function);
 		item->setData(0, Qt::UserRole, v);
 		ui->shortcutsTreeWidget->addTopLevelItem(item);
 	}
@@ -237,7 +237,7 @@ void TShortcutEditorDialog::key1_combo_box_activated(int /*index*/)
 		QStringList stringlist;
 		stringlist << translatedObjectName << function->getLongDescription() << function->getKeySequence();
 		QTreeWidgetItem* item = new QTreeWidgetItem(stringlist);
-		QVariant v = qVariantFromValue((void*) function);
+        QVariant v = QVariant::fromValue((void*) function);
 		item->setData(0, Qt::UserRole, v);
 
         ui->shortcutsTreeWidget->addTopLevelItem(item);

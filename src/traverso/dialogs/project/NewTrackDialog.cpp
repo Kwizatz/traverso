@@ -203,7 +203,7 @@ void NewTrackDialog::update_buses_comboboxes()
 
         QListWidgetItem* item = new QListWidgetItem(routingOutputListWidget);
         item->setText(tr("Internal Buses:"));
-        item->setTextColor(QColor("grey"));
+        item->setForeground(QColor("grey"));
         item->setFlags(Qt::NoItemFlags);
 
         QList<TBusTrack*> subs;
@@ -220,7 +220,7 @@ void NewTrackDialog::update_buses_comboboxes()
 
         item = new QListWidgetItem(routingOutputListWidget);
         item->setText(tr("External Outputs:"));
-        item->setTextColor(QColor("grey"));
+        item->setForeground(QColor("grey"));
         item->setFlags(Qt::NoItemFlags);
         foreach(AudioBus* bus, hardwareBuses) {
             if (isAudioTrack->isChecked() && bus->get_type() == ChannelIsInput) {

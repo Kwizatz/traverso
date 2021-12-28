@@ -28,6 +28,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 #include <AddRemove.h>
 #include "AudioDevice.h"
 
+#include <QRegularExpression>
+
 #include "Debugger.h"
 
 static bool smallerMarker(const Marker* left, const Marker* right )
@@ -192,7 +194,7 @@ void TimeLine::marker_position_changed()
 
 void TimeLine::index_markers()
 {
-	qSort(m_markers.begin(), m_markers.end(), smallerMarker);
+    std::sort(m_markers.begin(), m_markers.end(), smallerMarker);
 	// let the markers know about their position (index)
 	for (int i = 0; i < m_markers.size(); i++) {
 		m_markers.at(i)->set_index(i+1);
@@ -241,7 +243,7 @@ QString TimeLine::format_cdtrack_name(Marker *marker, int i)
                 name += "-" + song;
         }
 
-        name.replace(QRegExp("\\s"), "_");
+        name.replace(QRegularExpression("\\s"), "_");
         return name;
 }
 

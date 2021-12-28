@@ -114,7 +114,7 @@ void ExternalProcessingDialog::start_external_processing()
 	
 	m_arguments.append(m_infilename);
 	m_arguments.append(m_outfilename);
-	m_arguments += m_commandargs.split(QRegExp("\\s+"));
+    m_arguments += m_commandargs.split(QRegularExpression("\\s+"));
 	
 	m_processor->start(m_program, m_arguments);
 }
@@ -133,7 +133,7 @@ void ExternalProcessingDialog::read_standard_output()
 			foreach(QString string, list) {
                 if (string.contains("Supported effects:") || string.contains("effect:") || string.contains("EFFECTS:")) {
                     result = string.remove("Supported effects:").remove("effect:").remove("EFFECTS:");
-					QStringList options = string.split(QRegExp("\\s+"));
+                    QStringList options = string.split(QRegularExpression("\\s+"));
 					foreach(QString string, options) {
 						if (!string.isEmpty()) {
 							argsComboBox->addItem(string);
@@ -158,7 +158,7 @@ void ExternalProcessingDialog::read_standard_output()
 	QString result = m_processor->readAllStandardOutput();
 	
 	if (result.contains("%")) {
-		QStringList tokens = result.split(QRegExp("\\s+"));
+        QStringList tokens = result.split(QRegularExpression("\\s+"));
 		foreach(QString token, tokens) {
 			if (token.contains("%")) {
 				token = token.remove("%").remove("(").remove(")");

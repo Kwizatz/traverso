@@ -1,6 +1,6 @@
 #CMAKE SETUP
 #Require 3.1.0 for Qt finding
-CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16.0 FATAL_ERROR)
 
 SET(CMAKE_COLOR_MAKEFILE ON)
 SET(CMAKE_VERBOSE_MAKEFILE ON)
@@ -35,12 +35,12 @@ OPTION(WANT_LV2		"Include LV2 Plugin support" ON)
 OPTION(WANT_MP3_DECODE	"Include mp3 decoding support, for playing mp3 files" ON)
 OPTION(WANT_MP3_ENCODE	"Include mp3 encoding support, for creating mp3 files" OFF)
 OPTION(WANT_PCH     	"Use precompiled headers" OFF)
-OPTION(WANT_DEBUG   	"Debug build" ON)
+OPTION(WANT_DEBUG   	"Debug build" OFF)
 OPTION(WANT_TRAVERSO_DEBUG "Provides 4 levels of debug ouput on the command line, always on for DEBUG builds" OFF)
 OPTION(WANT_THREAD_CHECK	"Checks at runtime if functions are called from the correct thread, used by developers for debugging" OFF)
 OPTION(WANT_VECLIB_OPTIMIZATIONS "Build with veclib optimizations (Only for PPC based Mac OS X)" OFF)
 OPTION(AUTOPACKAGE_BUILD "Build traverso with autopackage tools" OFF)
-OPTION(DETECT_HOST_CPU_FEATURES "Detect the feature set of the host cpu, and compile with an optimal set of compiler flags" OFF)
+OPTION(DETECT_HOST_CPU_FEATURES "Detect the feature set of the host cpu, and compile with an optimal set of compiler flags" ON)
 OPTION(WANT_SSE "Use sse instruction set. This option is only effective if DETECT_HOST_CPU_FEATURES is OFF." ON)
 
 
@@ -287,18 +287,22 @@ CONFIGURE_FILE(
 ADD_CUSTOM_TARGET(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
 
 
-SET (QT_MIN_VERSION "5.3.0")
-find_package(Qt5 COMPONENTS Core Widgets Xml REQUIRED)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+SET (QT_MIN_VERSION "6.2.2")
+find_package(Qt6 COMPONENTS Core Widgets Xml REQUIRED)
 set(CMAKE_AUTOMOC ON)
 SET(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 #Set up include dirs with all found packages
 INCLUDE_DIRECTORIES(
 ${CMAKE_SOURCE_DIR}/src/common
-${Qt5Widgets_INCLUDE_DIRS}
-${Qt5Widgets_INCLUDES}
-${Qt5Xml_INCLUDE_DIRS}
-${Qt5Xml_INCLUDES}
+${Qt6Widgets_INCLUDE_DIRS}
+${Qt6Widgets_INCLUDES}
+${Qt6Xml_INCLUDE_DIRS}
+${Qt6Xml_INCLUDES}
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")

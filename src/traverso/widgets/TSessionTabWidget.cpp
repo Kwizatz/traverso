@@ -79,7 +79,7 @@ TSessionTabWidget::TSessionTabWidget(QToolBar* toolBar, TSession *session)
         m_childLayout->addStretch(1);
         m_childLayout->addWidget(m_arrowButton);
         m_childLayout->addSpacing(4);
-        m_childLayout->setMargin(0);
+        m_childLayout->setContentsMargins(0, 0, 0, 0);
 
         QAction* action;
 
@@ -182,11 +182,11 @@ void TSessionTabWidget::toolbar_orientation_changed(Qt::Orientation orientation)
 
                 if (orientation == Qt::Vertical) {
                         QVBoxLayout* vLayout = new QVBoxLayout();
-                        vLayout->setMargin(0);
+                        vLayout->setContentsMargins(0, 0, 0, 0);
                         setLayout(vLayout);
                 } else {
                         QHBoxLayout* hLayout = new QHBoxLayout();
-                        hLayout->setMargin(0);
+                        hLayout->setContentsMargins(0, 0, 0, 0);
                         setLayout(hLayout);
                 }
 
@@ -312,7 +312,7 @@ void TSessionTabWidget::arrow_button_clicked()
 
 void TSessionTabWidget::shortcut_click()
 {
-        animateClick(120);
+        animateClick();
 }
 
 void TSessionTabWidget::leaveEvent( QEvent * )

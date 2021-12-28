@@ -340,7 +340,7 @@ void TTrackManagerDialog::update_routing_input_output_widget_view()
                 if (bus) {
                         item->setText(bus->get_name());
                         if (!bus->is_valid()) {
-                                item->setTextColor(QColor(Qt::lightGray));
+                                item->setForeground(QColor(Qt::lightGray));
                         }
                 }
         }
@@ -354,7 +354,7 @@ void TTrackManagerDialog::update_routing_input_output_widget_view()
                 item->setText(send->get_name());
                 AudioBus* bus = send->get_bus();
                 if (bus && !bus->is_valid()) {
-                        item->setTextColor(QColor(Qt::lightGray));
+                        item->setForeground(QColor(Qt::lightGray));
                 }
                 item->setData(Qt::UserRole, send->get_id());
         }
@@ -366,7 +366,7 @@ void TTrackManagerDialog::update_routing_input_output_widget_view()
                 item->setText(send->get_name());
                 AudioBus* bus = send->get_bus();
                 if (bus && !bus->is_valid()) {
-                        item->setTextColor(QColor(Qt::lightGray));
+                        item->setForeground(QColor(Qt::lightGray));
                 }
                 item->setData(Qt::UserRole, send->get_id());
         }

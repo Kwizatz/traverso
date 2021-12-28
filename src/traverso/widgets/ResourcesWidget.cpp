@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 #include <Themer.h>
 
 #include <QHeaderView>
-#include <QDirModel>
+#include <QFileSystemModel>
 #include <QListView>
 #include <QPushButton>
 #include <QHBoxLayout>
@@ -48,7 +48,7 @@ FileWidget::FileWidget(QWidget *parent)
     QPalette palette;
     palette.setColor(QPalette::AlternateBase, themer()->get_color("ResourcesBin:alternaterowcolor"));
 
-    m_dirModel = new QDirModel;
+    m_dirModel = new QFileSystemModel;
     m_dirModel->setFilter(QDir::Dirs | QDir::Files | QDir::NoDot);
     m_dirView = new QListView;
     m_dirView->setModel(m_dirModel);
@@ -57,7 +57,7 @@ FileWidget::FileWidget(QWidget *parent)
     m_dirView->setSelectionMode(QAbstractItemView::ExtendedSelection);
     m_dirView->setAlternatingRowColors(true);
     m_dirView->setPalette(palette);
-    m_dirModel->setSorting(QDir::DirsFirst | QDir::Name | QDir::IgnoreCase);
+    m_dirModel->sort(QDir::DirsFirst | QDir::Name | QDir::IgnoreCase);
 
     m_box = new QComboBox(this);
     m_box->addItem("", "");
@@ -88,7 +88,7 @@ FileWidget::FileWidget(QWidget *parent)
     hlay->addStretch();
 
     QVBoxLayout* lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
     lay->setSpacing(6);
     lay->addWidget(m_box);
     lay->addLayout(hlay);
@@ -142,7 +142,8 @@ void FileWidget::dir_up_button_clicked()
 
 void FileWidget::refresh_button_clicked()
 {
-	m_dirModel->refresh(m_dirView->rootIndex());
+    //QT6_FIXME
+//	m_dirModel->refresh(m_dirView->rootIndex());
 }
 
 void FileWidget::box_actived(int i)

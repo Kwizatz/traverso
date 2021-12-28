@@ -510,7 +510,7 @@ void CDWritingDialog::read_standard_output()
 #else
 			if (data.contains("/dev/") || data.contains("dev=")) {
 #endif
-				QStringList strlist = QString(data).split(QRegExp("\\s+"));
+                QStringList strlist = QString(data).split(QRegularExpression("\\s+"));
 				QString deviceName = "No Device Available";
 				QString device = "/no/device/detected";
 				
@@ -601,7 +601,7 @@ void CDWritingDialog::read_standard_output()
 	}
 	
 	if (sout.contains("Writing track")) {
-		QStringList strlist = sout.split(QRegExp("\\s+"));
+        QStringList strlist = sout.split(QRegularExpression("\\s+"));
 		if (strlist.size() > 3) {
 			QString text = strlist.at(0) + " " + strlist.at(1) + " " + strlist.at(2);
 			update_cdburn_status(text, NORMAL_MESSAGE);
@@ -610,7 +610,7 @@ void CDWritingDialog::read_standard_output()
 	}	
 	
 	if (sout.contains("%") && sout.contains("(") && sout.contains(")")) {
-		QStringList strlist = sout.split(QRegExp("\\s+"));
+        QStringList strlist = sout.split(QRegularExpression("\\s+"));
 		if (strlist.size() > 7) {
 			int written = strlist.at(1).toInt();
 			int total = strlist.at(3).toInt();

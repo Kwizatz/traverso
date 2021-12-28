@@ -232,7 +232,7 @@ void ViewPort::tabletEvent(QTabletEvent * event)
 	QGraphicsView::tabletEvent(event);
 }
 
-void ViewPort::enterEvent(QEvent* e)
+void ViewPort::enterEvent(QEnterEvent* e)
 {
     if (ied().is_holding()) {
         // we allready have viewport so do nothing

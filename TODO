@@ -1,5 +1,6 @@
 TOBEDONE FOR 0.50.x
 
+* Select Fade shape preset from context menu does not work
 * snaplist not functional after project load. works again after a zoom
 * split clip: fade in/out on new clips is broken, sometimes they do show up, sometimes they are gone
 * Setting input bus for AudioTrack: update vumeter monitoring  on the newly added bus, not the configuration on the old bus

@@ -72,7 +72,7 @@ AudioDriverConfigPage::AudioDriverConfigPage(QWidget *parent)
 	m_mainLayout->addWidget(m_portaudiodrivers);
 
 	m_alsadevices = new AlsaDevicesPage(this);
-	m_alsadevices->layout()->setMargin(0);
+    m_alsadevices->layout()->setContentsMargins(0, 0, 0, 0);
 	m_mainLayout->addWidget(m_alsadevices);
 	
         connect(driverCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(driver_combobox_index_changed(QString)));
@@ -543,7 +543,7 @@ void AppearenceConfigPage::load_config()
 		supportedIconSizes = "16;22;32;48";
 	}
 
-	QStringList iconSizesList = supportedIconSizes.split(";", QString::SkipEmptyParts);
+	QStringList iconSizesList = supportedIconSizes.split(";", Qt::SkipEmptyParts);
 
 	// check if the current icon size occurs in the list, if not, add it
 	if (iconSizesList.lastIndexOf(iconsize) == -1) {
@@ -558,7 +558,7 @@ void AppearenceConfigPage::load_config()
 
 	// and the same again for the icons size of the transport console
 	QString trspsize = config().get_property("Themer", "transportconsolesize", "22").toString();
-	iconSizesList = supportedIconSizes.split(";", QString::SkipEmptyParts);
+	iconSizesList = supportedIconSizes.split(";", Qt::SkipEmptyParts);
 
 	if (iconSizesList.lastIndexOf(iconsize) == -1) {
 		iconSizesList << trspsize;

@@ -243,8 +243,8 @@ void SheetView::move_trackview_up(TrackView *trackView)
 
 	trackView->get_track()->set_sort_index(newindex);
 
-	qSort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
-	qSort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
+    std::sort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
+    std::sort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
 
 	layout_tracks();
 }
@@ -287,8 +287,8 @@ void SheetView::move_trackview_down(TrackView *trackView)
 
 	trackView->get_track()->set_sort_index(newindex);
 
-	qSort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
-	qSort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
+    std::sort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
+    std::sort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
 
 	layout_tracks();
 
@@ -319,8 +319,8 @@ void SheetView::to_bottom(TrackView *trackView)
 	}
 
 
-	qSort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
-	qSort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
+    std::sort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
+    std::sort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
 
 	layout_tracks();
 }
@@ -357,8 +357,8 @@ void SheetView::to_top(TrackView *trackView)
 	}
 
 
-	qSort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
-	qSort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
+    std::sort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
+    std::sort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
 
 	layout_tracks();
 }
@@ -390,8 +390,8 @@ void SheetView::add_new_track_view(Track* track)
 
 	connect(view, SIGNAL(totalTrackHeightChanged()), this, SLOT(layout_tracks()));
 
-	qSort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
-	qSort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
+    std::sort(m_audioTrackViews.begin(), m_audioTrackViews.end(), smallerTrackView);
+    std::sort(m_busTrackViews.begin(), m_busTrackViews.end(), smallerTrackView);
 
 	layout_tracks();
 }

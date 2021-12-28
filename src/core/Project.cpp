@@ -320,7 +320,7 @@ int Project::load(const QString& projectfile)
                 conf.type = e.attribute("type", "");
                 conf.bustype = e.attribute("bustype", "software");
                 conf.id = e.attribute("id", "-1").toLongLong();
-                QStringList channelIds = e.attribute("channelids", "").split(";", QString::SkipEmptyParts);
+                QStringList channelIds = e.attribute("channelids", "").split(";", Qt::SkipEmptyParts);
 
                 AudioBus* bus = new AudioBus(conf);
 

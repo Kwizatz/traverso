@@ -119,7 +119,7 @@ void SnapList::update_snaplist()
 	
 
 	// sort the list
-	qSort(m_xposList);
+    std::sort(m_xposList.begin(), m_xposList.end());
 
     int range = int((m_rangeEnd - m_rangeStart) / m_scalefactor);
 

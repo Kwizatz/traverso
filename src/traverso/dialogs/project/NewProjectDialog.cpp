@@ -123,7 +123,7 @@ void NewProjectDialog::accept( )
 		switch (QMessageBox::information(this,
 			tr("Traverso - Question"),
 			   tr("The Project \"%1\" already exists, do you want to remove it and replace it with a new one ?").arg(title),
-			      tr("Yes"), tr("No"), QString::null, 1, -1)) 
+                  tr("Yes"), tr("No"), "", 1, -1))
 		{
 			case 0:
 				pm().remove_project(title);
@@ -363,7 +363,8 @@ void NewProjectDialog::move_up()
 		return;
 	}
 
-	qSort(selection);
+    //QT6_FIXME
+//	std::sort(selection);
 	int firstIndex = treeWidgetFiles->topLevelItemCount();
 	QList<int> indexList;
 
@@ -393,8 +394,9 @@ void NewProjectDialog::move_down()
 		return;
 	}
 
-	qSort(selection);
-	int firstIndex = 0;
+    //QT6_FIXME
+//	std::sort(selection);
+    int firstIndex = 0;
 	QList<int> indexList;
 
 	foreach(QTreeWidgetItem *it, selection) {

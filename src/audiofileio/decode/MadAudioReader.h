@@ -96,7 +96,7 @@ private:
     bool m_bInputError;
 
     int m_channels{};
-    int m_sampleRate{};
+    uint m_sampleRate{};
 };
 
 

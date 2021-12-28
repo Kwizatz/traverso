@@ -118,7 +118,7 @@ SystemResources::SystemResources(QWidget * parent)
 	lay->addWidget(m_cpuUsage);
         lay->addWidget(TMainWindow::instance()->get_track_finder());
         lay->addWidget(m_collectedNumber);
-	lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 	lay->addSpacing(6);
 	setLayout(lay);
 	setFrameStyle(QFrame::NoFrame);
@@ -178,7 +178,7 @@ DriverInfo::DriverInfo( QWidget * parent )
 	
     QHBoxLayout* lay = new QHBoxLayout(this);
     lay->addWidget(m_driver);
-	lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 	setLayout(lay);
 	
 	setFrameStyle(QFrame::NoFrame);
@@ -252,7 +252,7 @@ HDDSpaceInfo::HDDSpaceInfo(QWidget* parent )
 	m_button->setEnabled(false);
 	
         QHBoxLayout* lay = new QHBoxLayout;
-	lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 	lay->addWidget(m_button);
 	setLayout(lay);
 	

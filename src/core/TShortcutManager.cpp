@@ -161,7 +161,7 @@ QStringList TFunction::getKeys(bool fromInheritedBase) const
 
 QStringList TFunction::getObjects() const
 {
-	return object.split("::", QString::SkipEmptyParts);
+    return object.split("::", Qt::SkipEmptyParts);
 }
 
 QString TFunction::getObject() const
@@ -296,7 +296,7 @@ QList< TFunction* > TShortcutManager::getFunctionsFor(QString className)
 		}
 	}
 
-	qSort(functionsList.begin(), functionsList.end(), TFunction::smaller);
+    std::sort(functionsList.begin(), functionsList.end(), TFunction::smaller);
     return functionsList;
 }
 
@@ -1159,7 +1159,7 @@ void TShortcutManager::saveFunction(TFunction *function)
 
 	settings.beginGroup(function->commandName);
 	settings.setValue("keys", function->getKeys(false).join(";"));
-	QStringList modifiers = function->getModifierSequence(false).split("+", QString::SkipEmptyParts);
+    QStringList modifiers = function->getModifierSequence(false).split("+", Qt::SkipEmptyParts);
 	settings.setValue("modifiers", modifiers.join(";"));
 	settings.setValue("sortorder", function->sortorder);
 	if (!function->submenu.isEmpty())
@@ -1234,8 +1234,8 @@ void TShortcutManager::loadShortcuts()
 
 		settings->beginGroup(function->commandName);
 		QString keyString = settings->value("keys").toString();
-		QStringList keys = keyString.toUpper().split(";", QString::SkipEmptyParts);
-		QStringList modifiers = settings->value("modifiers").toString().toUpper().split(";", QString::SkipEmptyParts);
+        QStringList keys = keyString.toUpper().split(";", Qt::SkipEmptyParts);
+        QStringList modifiers = settings->value("modifiers").toString().toUpper().split(";", Qt::SkipEmptyParts);
 		QString autorepeatinterval = settings->value("autorepeatinterval").toString();
 		QString autorepeatstartdelay = settings->value("autorepeatstartdelay").toString();
 		QString submenu = settings->value("submenu").toString();
@@ -1301,7 +1301,7 @@ void TShortcutManager::loadShortcuts()
 				{
 					foreach(QString object, function->getObjects())
 					{
-						shortcut->objects.insertMulti(object, function);
+                        shortcut->objects.insert(object, function);
 					}
 				}
 			}
@@ -1323,7 +1323,7 @@ void TShortcutManager::loadShortcuts()
 					{
 						foreach(QString object, function->getObjects())
 						{
-							shortcut->objects.insertMulti(object, function);
+                            shortcut->objects.insert(object, function);
 						}
 					}
 				}

@@ -26,7 +26,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
 #include <QFileInfo>
 #include <QList>
 #include <QMap>
-#include <QRegExp>
 #include <QDebug>
 
 #include <commands.h>
@@ -1343,7 +1342,7 @@ void Sheet::update_skip_positions()
 		}
 	}
 
-	qSort(m_xposList);
+    std::sort(m_xposList.begin(), m_xposList.end());
 }
 
 void Sheet::skip_to_start()

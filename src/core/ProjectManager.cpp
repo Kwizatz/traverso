@@ -479,7 +479,7 @@ void ProjectManager::start_incremental_backup(Project* project)
 	}
 	
 	QDateTime time = QDateTime::currentDateTime();
-	QString writelocation = backupdir + "/" + time.toString() + "__" + QString::number(time.toTime_t());
+    QString writelocation = backupdir + "/" + time.toString() + "__" + QString::number(time.toMSecsSinceEpoch());
 	QFile compressedWriter(writelocation);
 	
 	if (!compressedWriter.open( QIODevice::WriteOnly ) ) {

@@ -51,7 +51,7 @@ PlayHead::PlayHead(SheetView* sv, TSession* session, ClipsViewPort* vp)
 	
 	// TODO: Make duration scale with scalefactor? (nonlinerly?)
 	m_animation.setDuration(ANIME_DURATION);
-	m_animation.setCurveShape(QTimeLine::EaseInOutCurve);
+    m_animation.setEasingCurve(QEasingCurve::InOutQuad);
 	
 	connect(m_session, SIGNAL(transportStarted()), this, SLOT(play_start()));
 	connect(m_session, SIGNAL(transportStopped()), this, SLOT(play_stop()));

@@ -90,6 +90,7 @@ nframes_t AbstractAudioReader::pos()
 
 bool AbstractAudioReader::seek(nframes_t start)
 {
+    PENTER;
     if (m_readPos != start) {
         if (!seek_private(start)) {
             return false;
