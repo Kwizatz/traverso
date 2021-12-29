@@ -77,8 +77,8 @@ AudioDriverConfigPage::AudioDriverConfigPage(QWidget *parent)
 	
         connect(driverCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(driver_combobox_index_changed(QString)));
 	connect(restartDriverButton, SIGNAL(clicked()), this, SLOT(restart_driver_button_clicked()));
-        connect(rateComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(rate_combobox_index_changed(QString)));
-        connect(&audiodevice(), SIGNAL(driverSetupMessage(QString,int)), this, SLOT(driver_setup_message(QString, int)));
+        connect(rateComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(rate_combobox_index_changed(int)));
+        connect(&audiodevice(), SIGNAL(driverSetupMessage(QString,int)), this, SLOT(driver_setup_message(QString,int)));
 
 #if defined (PORTAUDIO_SUPPORT)
         connect(m_portaudiodrivers->driverCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(portaudio_host_api_combobox_index_changed(int)));
@@ -412,7 +412,7 @@ void AudioDriverConfigPage::update_latency_combobox( )
 	latencyComboBox->setCurrentIndex(index);
 }
 
-void AudioDriverConfigPage::rate_combobox_index_changed(QString )
+void AudioDriverConfigPage::rate_combobox_index_changed(int )
 {
 	update_latency_combobox();
 }
@@ -620,8 +620,8 @@ AppearenceConfigPage::AppearenceConfigPage(QWidget * parent)
 
 void AppearenceConfigPage::create_connections()
 {
-        connect(styleCombo, SIGNAL(activated(const QString)), this, SLOT(style_index_changed(const QString)));
-        connect(themeSelecterCombo, SIGNAL(activated(const QString)), this, SLOT(theme_index_changed(const QString)));
+        connect(styleCombo, SIGNAL(textActivated(QString)), this, SLOT(style_index_changed(QString)));
+        connect(themeSelecterCombo, SIGNAL(textActivated(QString)), this, SLOT(theme_index_changed(QString)));
 	connect(useStylePalletCheckBox, SIGNAL(toggled(bool)), this, SLOT(use_selected_styles_pallet_checkbox_toggled(bool)));
 	connect(pathSelectButton, SIGNAL(clicked()), this, SLOT(dirselect_button_clicked()));
 	connect(colorAdjustBox, SIGNAL(valueChanged(int)), this, SLOT(color_adjustbox_changed(int)));
