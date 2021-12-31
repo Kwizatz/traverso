@@ -221,6 +221,7 @@ void TShortcutManager::makeShortcutKeyHumanReadable(QString& keyfact, bool forma
         keyfact.replace(QString("PLUS"), "+");
     }
 	keyfact.replace(QString("DELETE"), "Delete");
+    keyfact.replace(QString("BKSPACE"), "Backspace");
 	keyfact.replace(QString("ESC"), "Esc");
 	keyfact.replace(QString("ENTER"), "Enter");
 	keyfact.replace(QString("RETURN"), "Return");
@@ -267,8 +268,8 @@ TFunction* TShortcutManager::getFunction(const QString &functionName) const
 QList< TFunction* > TShortcutManager::getFunctionsFor(QString className)
 {
 	QList<TFunction* > functionsList;
-	QStringList classes = m_classes.value(className.remove("View"));
-	foreach(QString object, classes)
+    QStringList classes = m_classes.value(className.remove("View"));
+    foreach(QString object, classes)
 	{
 		foreach(TFunction* function, m_functions)
 		{
@@ -289,7 +290,7 @@ QList< TFunction* > TShortcutManager::getFunctionsFor(QString className)
 				}
 			}
 
-			if (function->getObject() == object && hasRequiredSlot)
+            if (function->getObject() == object && hasRequiredSlot)
 			{
 				functionsList.append(function);
 			}
