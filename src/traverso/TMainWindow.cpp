@@ -525,6 +525,8 @@ void TMainWindow::show_session(TSession* session)
 
 	if (session) {
 		pm().get_undogroup()->setActiveStack(session->get_history_stack());
+        // Update scrollbars in order to reset the snapList's range
+        m_currentSheetWidget->get_sheetview()->update_scrollbars();
 //                setWindowTitle(m_project->get_title() + ": Sheet " + session->get_name() + " - Traverso");
 	}
 }
@@ -538,7 +540,7 @@ TCommand* TMainWindow::about_traverso()
 			"Traverso is brought to you by R. Sijrier and others,\n"
 			"including all the people from the Free Software world\n"
 			"who contributed the important technologies on which\n"
-			"Traverso is based (Gcc, Qt, Xorg, Linux, and so on)" ).arg(VERSION).arg(QT_VERSION_STR));
+            "Traverso is based (Gcc, Qt, Xorg, Linux, and so on)" ).arg(VERSION, QT_VERSION_STR));
 	QMessageBox::about ( this, tr("About Traverso"), text);
 
 	return (TCommand*) 0;
