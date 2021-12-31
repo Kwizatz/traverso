@@ -47,10 +47,10 @@ public :
 	QString get_dir() const;
 	QString get_name() const;
 	QString get_short_name() const;
-	qint64 get_id() const;
+        qint64 get_id() const {return m_id;}
 	qint64 get_orig_sheet_id() const {return m_origSheetId;}
     uint get_rate() const;
-	uint get_channel_count() const;
+        uint get_channel_count() const {return m_channelCount;}
     uint get_bit_depth() const;
 	
 protected:
@@ -59,7 +59,7 @@ protected:
     uint		m_bufferSize{};
     uint		m_chunkSize{};
 	
-    uint		m_channelCount{};
+    uint		m_channelCount;
     qint64		m_origSheetId{};
 	QString 	m_dir;
 	qint64		m_id{};
@@ -71,8 +71,5 @@ protected:
 	int		m_wasRecording;
 };
 
-
-inline uint AudioSource::get_channel_count( ) const {return m_channelCount;}
-inline qint64 AudioSource::get_id( ) const {return m_id;}
 
 #endif

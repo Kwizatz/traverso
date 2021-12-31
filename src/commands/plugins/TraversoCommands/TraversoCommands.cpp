@@ -40,7 +40,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
  *	\class TraversoCommands
     \brief The Traverso CommandPlugin class which 'implements' many of the default Commands
 
-    With this plugin, the InputEngine is able to dispatch key actions by directly
+    With this plugin, the TInputEventDispatcher is able to dispatch key actions by directly
     asking this Plugin for the needed Command object.
  */
 

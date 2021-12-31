@@ -508,7 +508,7 @@ int Sheet::start_export(ExportSpecification* spec)
 
 int Sheet::render(ExportSpecification* spec)
 {
-	int chn;
+    uint chn;
     int x;
         int progress = 0;
 
@@ -804,7 +804,7 @@ void Sheet::resize_buffer(nframes_t size)
         buses.append(m_renderBus);
         buses.append(m_clipRenderBus);
         foreach(AudioBus* bus, buses) {
-                for(int i=0; i<bus->get_channel_count(); i++) {
+                for(uint i=0; i<bus->get_channel_count(); i++) {
                         if (AudioChannel* chan = bus->get_channel(i)) {
                                 chan->set_buffer_size(size);
                         }

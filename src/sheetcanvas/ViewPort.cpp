@@ -232,7 +232,7 @@ void ViewPort::tabletEvent(QTabletEvent * event)
 	QGraphicsView::tabletEvent(event);
 }
 
-void ViewPort::enterEvent(QEnterEvent* e)
+void ViewPort::enterEvent(QEvent* e)
 {
     if (ied().is_holding()) {
         // we allready have viewport so do nothing
@@ -338,7 +338,9 @@ void ViewPort::paintEvent( QPaintEvent* e )
 
 void ViewPort::set_canvas_cursor_shape(const QString &shape, int alignment)
 {
-    m_sv->set_cursor_shape(shape, alignment);
+    if (m_sv) {
+        m_sv->set_cursor_shape(shape, alignment);
+    }
 }
 
 void ViewPort::set_canvas_cursor_text( const QString & text, int mseconds)

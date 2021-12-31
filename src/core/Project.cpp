@@ -460,7 +460,7 @@ int Project::save_from_template_to_project_file(const QString& templateFile, con
         QDomDocument doc("Project");
 
         if (!file.open(QIODevice::ReadOnly)) {
-                m_errorString = tr("Project %1: Cannot open project.tpf file! (Reason: %2)").arg(m_name).arg(file.errorString());
+                m_errorString = tr("Project %1: Cannot open project.tpf file! (Reason: %2)").arg(m_name, file.errorString());
                 info().critical(m_errorString);
                 return PROJECT_FILE_COULD_NOT_BE_OPENED;
         }
@@ -468,7 +468,7 @@ int Project::save_from_template_to_project_file(const QString& templateFile, con
         // Start setting and parsing the content of the xml file
         QString errorMsg;
         if (!doc.setContent(&file, &errorMsg)) {
-                m_errorString = tr("Project %1: Failed to parse project.tpf file! (Reason: %2)").arg(m_name).arg(errorMsg);
+                m_errorString = tr("Project %1: Failed to parse project.tpf file! (Reason: %2)").arg(m_name, errorMsg);
                 info().critical(m_errorString);
                 return SETTING_XML_CONTENT_FAILED;
         }

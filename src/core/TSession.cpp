@@ -462,7 +462,7 @@ TCommand* TSession::add_track(Track* track, bool historable)
 	return new AddRemove(this, track, historable, this,
 		"private_add_track(Track*)", "privateTrackAdded(Track*)",
 		"private_remove_track(Track*)", "privateTrackRemoved(Track*)",
-		tr("Added %1: %2").arg(track->metaObject()->className()).arg(track->get_name()));
+        tr("Added %1: %2").arg(track->metaObject()->className(), track->get_name()));
 }
 
 
@@ -476,7 +476,7 @@ TCommand* TSession::remove_track(Track* track, bool historable)
 	return new AddRemove(this, track, historable, this,
 		"private_remove_track(Track*)", "privateTrackRemoved(Track*)",
 		"private_add_track(Track*)", "privateTrackAdded(Track*)",
-		tr("Removed %1: %2").arg(track->metaObject()->className()).arg(track->get_name()));
+        tr("Removed %1: %2").arg(track->metaObject()->className(), track->get_name()));
 }
 
 void TSession::private_add_track(Track* track)
