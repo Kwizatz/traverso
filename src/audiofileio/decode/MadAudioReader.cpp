@@ -464,22 +464,25 @@ MadAudioReader::MadAudioReader(const QString& filename)
     m_length = TimeRef(m_nframes, m_rate);
 
     d->overflowBuffers = nullptr;
+}
 
+void MadAudioReader::init()
+{
     seek_private(0);
     clear_buffers();
 }
-
 
 MadAudioReader::~MadAudioReader()
 {
     if (d) {
         d->handle->cleanup();
         delete d->handle;
-        clear_buffers();
+        d->handle = nullptr;
+        MadAudioReader::clear_buffers();
         delete d;
+        d = nullptr;
     }
 }
-
 
 void MadAudioReader::create_buffers()
 {
@@ -799,7 +802,6 @@ nframes_t MadAudioReader::read_private(DecodeBuffer* buffer, nframes_t frameCoun
     return framesWritten;
 }
 
-
 bool MadAudioReader::createPcmSamples(mad_synth* synth)
 {
     audio_sample_t	**writeBuffers = d->outputBuffers;
@@ -810,6 +812,18 @@ bool MadAudioReader::createPcmSamples(mad_synth* synth)
 
     if (!d->overflowBuffers) {
         create_buffers();
+    }
+
+    // @Ben: do you happen to know more about the MadAudioReader
+    // internals? Please confirm the comment and code block below
+    // I added is correct:
+    if (!d->outputBuffers) {
+        // if d->outputBuffers is set to nullptr in seek_private()
+        // it says there that it should write to overflowBuffers.
+        // says Remon: if I understand code below it means we have
+        // to set the variable 'overflow' to 'true' right here
+        overflow = true;
+        writeBuffers = d->overflowBuffers;
     }
 
     if (writeBuffers && (m_readPos + d->outputPos + nframes) > m_nframes) {

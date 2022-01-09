@@ -138,7 +138,9 @@ AbstractAudioReader* AbstractAudioReader::create_audio_reader(const QString& fil
         }
 #if defined MP3_DECODE_SUPPORT
         else if (decoder == "mad") {
-            newReader = new MadAudioReader(filename);
+            auto madAudioReader = new MadAudioReader(filename);
+            madAudioReader->init();
+            newReader = madAudioReader;
         }
 #endif
 
@@ -165,7 +167,9 @@ AbstractAudioReader* AbstractAudioReader::create_audio_reader(const QString& fil
                 }
 #if defined MP3_DECODE_SUPPORT
         else if (MadAudioReader::can_decode(filename)) {
-            newReader = new MadAudioReader(filename);
+                    auto madAudioReader = new MadAudioReader(filename);
+                    madAudioReader->init();
+                    newReader = madAudioReader;
         }
 #endif
     }
