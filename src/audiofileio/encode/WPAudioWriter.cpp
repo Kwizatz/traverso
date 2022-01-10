@@ -45,7 +45,7 @@ WPAudioWriter::WPAudioWriter()
 WPAudioWriter::~WPAudioWriter()
 {
 	if (m_wp) {
-		close_private();
+        WPAudioWriter::close_private();
 	}
 	if (m_firstBlock) {
 		delete [] m_firstBlock;

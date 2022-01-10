@@ -39,7 +39,7 @@ SFAudioWriter::SFAudioWriter()
 SFAudioWriter::~SFAudioWriter()
 {
 	if (m_sf) {
-		close_private();
+        SFAudioWriter::close_private();
 	}
 }
 
@@ -109,7 +109,7 @@ bool SFAudioWriter::open_private()
 	
     if (m_sf == nullptr) {
         sf_error_str (nullptr, errbuf, sizeof (errbuf) - 1);
-        PWARN(QString("Export: cannot open output file \"%1\" (%2)").arg(m_fileName).arg(errbuf).toLatin1().data());
+        PWARN(QString("Export: cannot open output file \"%1\" (%2)").arg(m_fileName, errbuf).toLatin1().data());
 		return false;
 	}
 	
