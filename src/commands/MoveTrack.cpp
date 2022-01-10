@@ -172,7 +172,7 @@ void MoveTrack::move_to_sheet()
     Sheet* destination = project->get_sheet(id);
     Sheet* orig = qobject_cast<Sheet*>(track->get_session());
 
-    if (! (destination || orig)) {
+    if (!destination || !orig) {
         return;
     }
 
