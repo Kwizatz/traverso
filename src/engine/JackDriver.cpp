@@ -133,6 +133,7 @@ void JackDriver::add_channel(AudioChannel* channel)
 
         if (pcpair->jackport == nullptr) {
                 printf("JackDriver: cannot register port \"%s\"!\n", channel->get_name().toUtf8().data());
+                delete pcpair;
                 return;
         }
 
