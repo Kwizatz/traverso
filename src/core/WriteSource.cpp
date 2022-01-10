@@ -44,6 +44,8 @@ WriteSource::WriteSource( ExportSpecification* specification )
     m_diskio = nullptr;
     m_writer = nullptr;
     m_peak = nullptr;
+    m_channelCount = 0;
+    m_isRecording = false;
 }
 
 WriteSource::~WriteSource()
@@ -78,6 +80,10 @@ int WriteSource::process (nframes_t nframes)
 	// nframes MUST be greater then 0, this is a precondition !
 	Q_ASSERT(nframes);
 
+    if (m_channelCount == 0) {
+        PERROR("Channel count is 0");
+        return -1;
+    }
 
 	do {
 
@@ -87,7 +93,12 @@ int WriteSource::process (nframes_t nframes)
 
 			int err;
 
-			m_src_data.output_frames = m_out_samples_max / m_channelCount;
+            if (m_channelCount > 0) {
+                m_src_data.output_frames = m_out_samples_max / m_channelCount;
+            } else {
+                PERROR("Invalid channelcount which should be impossible");
+                return 0;
+            }
             uint rate = audiodevice().get_sample_rate();
 			m_src_data.end_of_input = (m_spec->pos + TimeRef(nframes, rate)) >= m_spec->endLocation;
 			m_src_data.data_out = m_dataF2;
@@ -238,7 +249,7 @@ int WriteSource::prepare_export()
 		break;
 
 	case 24:
-		dither_size = GDither32bit;
+        dither_size = GDither32bit;
 		break;
 
 	default:
@@ -307,7 +318,7 @@ int WriteSource::prepare_export()
 		break;
 
 	default:
-		m_sample_bytes = 0; // float format
+        m_sample_bytes = 0; // float format
 		break;
 	}
 
@@ -416,8 +427,8 @@ int WriteSource::rb_file_write(nframes_t cnt)
     uint chan;
 	
     // FIXME make it support any channel count, not just some high enough number?
-    audio_sample_t* readbuffer[6];
-	
+    audio_sample_t* readbuffer[m_channelCount];
+
 	for (chan=0; chan<m_channelCount; ++chan) {
 		
 		readbuffer[chan] = new audio_sample_t[cnt * m_channelCount];
@@ -447,9 +458,8 @@ int WriteSource::rb_file_write(nframes_t cnt)
 	}
 	
 	for (chan=0; chan<m_channelCount; ++chan) {
-		delete [] readbuffer[chan];
-        readbuffer[chan] = nullptr;
-	}
+        delete [] readbuffer[chan];
+    }
 	
     return int(read);
 }
@@ -478,7 +488,7 @@ void WriteSource::prepare_rt_buffers( )
 {
 	m_bufferSize = m_sampleRate * DiskIO::writebuffertime;
 	m_chunkSize = m_bufferSize / DiskIO::bufferdividefactor;
-	for (int i=0; i<m_channelCount; ++i) {
+    for (uint i=0; i<m_channelCount; ++i) {
 		m_buffers.append(new RingBufferNPT<audio_sample_t>(m_bufferSize));
 	}
 }

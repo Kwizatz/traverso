@@ -69,7 +69,7 @@ private:
 	DiskIO*		m_diskio;
 	GDither         m_dither{};
 	bool		m_processPeaks{};
-    bool            m_isRecording{};
+        bool            m_isRecording;
 	nframes_t       m_sampleRate{};
 	uint32_t        m_sample_bytes{};
 	
