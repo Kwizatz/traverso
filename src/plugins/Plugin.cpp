@@ -184,7 +184,7 @@ PluginControlPort::PluginControlPort(Plugin* parent, const QDomNode node)
 	, m_plugin(parent)
 	, m_automation(false)
 {
-	set_state(node);
+    set_state(node);
 }
 
 QDomNode PluginControlPort::get_state(QDomDocument doc)
