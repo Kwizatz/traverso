@@ -55,7 +55,7 @@ Curve::Curve(ContextItem* parent, const QDomNode& node )
 	: ContextItem(parent)
 {
 	init();
-	set_state(node);
+    Curve::set_state(node);
 }
 
 Curve::~Curve()
@@ -371,8 +371,6 @@ void Curve::get_vector (double x0, double x1, float *vec, nframes_t veclen)
 		subveclen = min (subveclen, veclen);
 
         val = float(lastnode->value);
-
-		i = veclen - subveclen;
 
 //                printf("filling last %d samples %f\n", subveclen, firstnode->value);
 

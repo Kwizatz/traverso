@@ -28,7 +28,10 @@
 #include <cstdio>
 #include <stdlib.h>
 #include <string.h>
+
 #ifdef USE_MLOCK
+
+#include "qglobal.h"
 
 #ifdef Q_OS_MAC
 #include <sys/types.h>
