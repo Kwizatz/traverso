@@ -169,8 +169,6 @@ ADD_EXECUTABLE(traverso
 )
 
 TARGET_LINK_LIBRARIES(traverso
-        ${Qt5Widgets_LIBRARIES}
-        ${Qt5Xml_LIBRARIES}
         traversosheetcanvas
         traversocore
         traversoaudiofileio
@@ -187,19 +185,16 @@ TARGET_LINK_LIBRARIES(traverso
         ${FLAC_LIB}
 # 	rt
         dl
+        ${Qt5Core_LIBRARIES}
+        ${Qt5UiTools_LIBRARIES}
+        ${Qt5Widgets_LIBRARIES}
+        ${Qt5Xml_LIBRARIES}
 )
 
-IF(WIN32)
-    TARGET_LINK_LIBRARIES(traverso
-        sndfile-1
-        fftw3-3
-    )
-ELSE(WIN32)
-    TARGET_LINK_LIBRARIES(traverso
+TARGET_LINK_LIBRARIES(traverso
         sndfile
         fftw3
-    )
-ENDIF(WIN32)
+)
 
 
 IF(HAVE_PORTAUDIO)
